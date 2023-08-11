@@ -46,6 +46,9 @@ const hasPriorityProperty = (requestQuery) => {
 const hasStatusProperty = (requestQuery) => {
   return requestQuery.status !== undefined;
 };
+
+//API 1
+
 app.get("/todos/", async (request, response) => {
   let data = null;
   let getTodosQuery = "";
@@ -97,6 +100,8 @@ app.get("/todos/", async (request, response) => {
   response.send(data);
 });
 
+//API 2
+
 app.get("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
 
@@ -111,6 +116,8 @@ app.get("/todos/:todoId/", async (request, response) => {
   response.send(todo);
 });
 
+//API 3
+
 app.post("/todos/", async (request, response) => {
   const { id, todo, priority, status } = request.body;
   const postTodoQuery = `
@@ -121,6 +128,8 @@ app.post("/todos/", async (request, response) => {
   await database.run(postTodoQuery);
   response.send("Todo Successfully Added");
 });
+
+//API 4
 
 app.put("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
@@ -165,6 +174,8 @@ app.put("/todos/:todoId/", async (request, response) => {
   await database.run(updateTodoQuery);
   response.send(`${updateColumn} Updated`);
 });
+
+//API 5
 
 app.delete("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
